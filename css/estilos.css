@@ -83,6 +83,12 @@ input {
     display: inline;
 }
 
+.img-cad {
+    width: 100%;
+    height: auto;
+    position: absolute;
+}
+
 .title {
     text-align: center;
 }
