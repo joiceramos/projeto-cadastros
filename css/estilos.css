@@ -1,0 +1,102 @@
+.container {
+    width: 100vw;
+    height: 100vh;
+    background-color: #e7e7e7;
+}
+
+.content {
+    width: 500px;
+    height: 300px;
+    border: 1px solid saddlebrown;
+    margin: auto;
+}
+
+form {
+    width: 550px;
+    height: auto;
+    border: 1px solid red;
+    border-radius: 10px;
+    box-shadow: 0 0 10px #000;
+    padding: 1em;
+    text-align: center;
+}
+
+#flex {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* #cardForm {
+    margin-left: 20%;
+} */
+
+label {
+    width: 200px;
+    text-align: left;
+}
+
+input {
+    width: 300px;
+    height: 30px;
+    border: 1px solid #e7e7e7;
+    margin-bottom: 15px;
+}
+
+.alinharRotulos {
+    text-align: right;
+}
+
+.alinhaBtns {
+    width:150px;
+    height: 40px;
+    font-size: 0.9em;
+    font-weight: bold;
+    margin-top: 20px;
+    margin-left: 10px;
+    background-color: black;
+    color:white;
+    border:0px;
+    padding:5px;
+    border-radius: 25px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.493);
+    cursor: pointer;
+}
+
+.btn-success {
+    background-color: rgb(63, 194, 118);
+}
+
+.btn-ok {
+    background-color: rgb(20, 117, 228);
+}
+
+.btn-danger {
+    background-color: rgb(219, 13, 13);
+}
+
+.carrinho {
+    width:300px; 
+    float:right;
+}
+.carrinho p {
+    display: inline;
+}
+
+.title {
+    text-align: center;
+}
+
+#btn_cliente {
+    background-color: rgb(141, 1, 255);
+    margin: auto;
+    text-align: center;
+    text-decoration: none;
+}
+
+#btn_produto {
+    background-color: rgb(3, 97, 219);
+    margin: auto;
+    text-decoration: none;
+    text-align: center;
+}

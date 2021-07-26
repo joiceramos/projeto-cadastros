@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Cliente - Cadastro de novos produtos</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" href="css/estilos.css">
+        <script src="js/cliente.js"></script>
+    </head>
+    <body>
+        <form>
+            <h2>Cadastro de novos clientes</h2>
+            <div>
+                <label class="alinharRotulos">Nome:</label>
+                <br>
+                <input id="nome" type="text">
+            </div>
+            
+            <div>
+                <label class="alinharRotulos">CPF:</label>
+                <br>
+                <input id="cpf" type="text">
+            </div>
+            
+            <div>
+                <label class="alinharRotulos">Data de nascimento:</label>
+                <br>
+                <input id="data_nascimento" type="text">
+            </div>
+
+            <div>
+                <label class="alinharRotulos">Endereço:</label>
+                <br>
+                <input id="endereco" type="text">
+            </div>
+            
+            <div>
+                <label class="alinharRotulos">E-mail:</label>
+                <br>
+                <input id="email" type="text">
+            </div>
+            
+            <div>
+                <label class="alinharRotulos">Telefone:</label>
+                <br>
+                <input id="email" type="text">
+            </div>
+            
+            <div>
+                <input type="button" value="Cadastrar" class="alinhaBtns btn-success" onclick="validarCliente('nome','cpf','data_nascimento', 'endereco', 'email', 'telefone')">  
+                <input type="button" value="Ver clientes" class="alinhaBtns btn-ok" onclick="window.open('verCliente.html','_self')">
+                <input type="reset" value="Limpar" class="alinhaBtns btn-danger">
+            </div>
+            <a href="index.html">Voltar</a>
+        </form>
+    </body>
+</html>
