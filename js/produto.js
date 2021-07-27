@@ -1,24 +1,28 @@
-// PRODUTO
-
-function validarProduto(nomeProduto, linkImagem, descricao, preco) {
-    let nome = document.getElementById(nomeProduto).value;
-    let imagem = document.getElementById(linkImagem).value;
-    let descricao = document.getElementById(descricao).value;
-    let preco = document.getElementById(preco).value;
+function validarProduto(idNomeCliente, idCpf, idData_nascimento, idEndereco, idEmail, idTelefone) {
+    let nome = document.getElementById(idNomeCliente).value;
+    let cpf = document.getElementById(idCpf).value;
+    let data_nascimento = document.getElementById(idData_nascimento).value;
+    let endereco = document.getElementById(idEndereco).value;
+    let email = document.getElementById(idEmail).value;
+    let telefone = document.getElementById(idTelefone).value;
 
     if (nome == "")
-        alert("Nome do produto não pode estar em branco. Favor preenchê-lo!");
-    else if (imagem == "")
-        alert("Link da imagem não pode estar em branco. Favor preenchê-lo!");
-    else if (descricao == "")
-        alert("Descrição do produto não pode estar em branco. Favor preenchê-lo!");
-    else if (preco == "")
-        alert("Preço do produto não pode estar em branco. Favor preenchê-lo!");
-    else cadastrarProduto(nome, imagem, descricao, preco);
+        alert("Nome não pode estar em branco. Favor preenchê-lo!");
+    else if (cpf == "")
+        alert("CPF não pode estar em branco. Favor preenchê-lo!");
+    else if (data_nascimento == "")
+        alert("Data de nascimento não pode estar em branco. Favor preenchê-lo!");
+    else if (endereco == "")
+        alert("Endereço não pode estar em branco. Favor preenchê-lo!");
+    else if (email == "")
+        alert("E-mail não pode estar em branco. Favor preenchê-lo!");
+    else if (telefone == "")
+        alert("Telefone não pode estar em branco. Favor preenchê-lo!");
+    else cadastrarProduto(nome, cpf, data_nascimento, endereco, email, telefone);
 }
 
-function cadastrarProduto(produto, imagem, descricao, preco) {
-    let novoProduto = {nome:produto, imagem:imagem, descricao:descricao, preco:preco};
+function cadastrarProduto(cli_nome, cli_cpf, cli_data_nascimento, cli_endereco, cli_email, cli_telefone) {
+    let novoProduto = {nome:cli_nome, cpf:cli_cpf, data_nascimento:cli_data_nascimento, endereco:cli_endereco, email:cli_email, telefone:cli_telefone};
 
     if (typeof(Storage) !== "undefined") {
         let produtos = localStorage.getItem("produtos");
@@ -26,7 +30,7 @@ function cadastrarProduto(produto, imagem, descricao, preco) {
         else produtos = JSON.parse(produtos);
         produtos.push(novoProduto); // Adiciona um novo produto
         localStorage.setItem("produtos",JSON.stringify(produtos))
-        alert("Foram cadastradas com sucesso "+ qtidade +" unidades do produto "+ produto +"!");
+        alert("Foram cadastradas com sucesso "+qtidade+" unidades do produto "+ produto+"!");
         atualizarTotalEstoque("totalEstoque");
         location.reload();
     } 
@@ -56,10 +60,12 @@ function listarEstoque() {
             produtos = JSON.parse(produtos);
             produtos.forEach(produto => {
                 document.write("<div>");
-                document.write(`<img src={produto.imagem} width="120px" height="auto"/>`);
-                document.write("<h3>Produto: "+produto.nome+"</h3>");
-                document.write("<p>Descrição: "+produto.descricao+"</p>");
-                document.write("<h5>Preço: "+produto.preco+"</h5>");
+                document.write("<h2>Nome: "+produto.nome+"</h2>");
+                document.write("<p>CPF: "+produto.cpf+"</p>");
+                document.write("<p>Data de nascimento: "+produto.data_nascimento+"</p>");
+                document.write("<p>Endereço: "+produto.endereco+"</p>");
+                document.write("<p>E-mail: "+produto.email+"</p>");
+                document.write("<p>Telefone: "+produto.telefone+"</p>");
                 document.write("</div>");
             });
         }

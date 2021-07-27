@@ -1,30 +1,28 @@
-// CLIENTE
-
-function validarCliente(nome, cpf, data_nascimento, endereco, email, telefone) {
-    let nome = document.getElementById(nome).value;
-    let cpf = document.getElementById(cpf).value;
-    let data_nascimento = document.getElementById(data_nascimento).value;
-    let endereco = document.getElementById(endereco).value;
-    let email = document.getElementById(email).value;
-    let telefone = document.getElementById(telefone).value;
+function validarCliente(idNomeCliente, idCpf, idData_nascimento, idEndereco, idEmail, idTelefone) {
+    let nome = document.getElementById(idNomeCliente).value;
+    let cpf = document.getElementById(idCpf).value;
+    let data_nascimento = document.getElementById(idData_nascimento).value;
+    let endereco = document.getElementById(idEndereco).value;
+    let email = document.getElementById(idEmail).value;
+    let telefone = document.getElementById(idTelefone).value;
 
     if (nome == "")
-        alert("Nome não pode estar em branco.");
+        alert("Nome não pode estar em branco. Favor preenchê-lo!");
     else if (cpf == "")
-        alert("Data de nascimento não pode estar em branco.");
+        alert("CPF não pode estar em branco. Favor preenchê-lo!");
     else if (data_nascimento == "")
-        alert("Data de nascimento não pode estar em branco.");
+        alert("Data de nascimento não pode estar em branco. Favor preenchê-lo!");
     else if (endereco == "")
-        alert("Data de nascimento não pode estar em branco.");
+        alert("Endereço não pode estar em branco. Favor preenchê-lo!");
     else if (email == "")
-        alert("Data de nascimento não pode estar em branco.");
+        alert("E-mail não pode estar em branco. Favor preenchê-lo!");
     else if (telefone == "")
-        alert("Data de nascimento não pode estar em branco.");
+        alert("Telefone não pode estar em branco. Favor preenchê-lo!");
     else cadastrarCliente(nome, cpf, data_nascimento, endereco, email, telefone);
 }
 
-function cadastrarCliente(nome, cpf, data_nascimento, endereco, email, telefone) {
-    let novoCliente = {nome:nome, cpf:cpf, data_nascimento:data_nascimento, endereco:endereco, email:email, telefone:telefone};
+function cadastrarCliente(cli_nome, cli_cpf, cli_data_nascimento, cli_endereco, cli_email, cli_telefone) {
+    let novoCliente = {nome:cli_nome, cpf:cli_cpf, data_nascimento:cli_data_nascimento, endereco:cli_endereco, email:cli_email, telefone:cli_telefone};
 
     if (typeof(Storage) !== "undefined") {
         let clientes = localStorage.getItem("clientes");
@@ -32,29 +30,43 @@ function cadastrarCliente(nome, cpf, data_nascimento, endereco, email, telefone)
         else clientes = JSON.parse(clientes);
         clientes.push(novoCliente); // Adiciona um novo produto
         localStorage.setItem("clientes",JSON.stringify(clientes))
-        alert(nome + " foi cadastrado com sucesso!");
+        //alert("Foram cadastradas com sucesso "+qtidade+" unidades do produto "+ produto+"!");
+        atualizarTotalEstoque("totalEstoque");
         location.reload();
     } 
+    else alert("A versão do seu navegador é muito antiga. Por isso, não será possível executar essa aplicação");
+}
+
+function atualizarTotalEstoque(idCampo) {
+    localStorage.setItem("totalEstoque",++document.getElementById(idCampo).innerHTML)
+}
+
+function carregarTotalEstoque(idCampo) {
+    if (typeof(Storage) !== "undefined") {
+        let totalEstoque = localStorage.getItem("totalEstoque");
+        if (totalEstoque == null) totalEstoque = 0;
+        document.getElementById(idCampo).innerHTML = totalEstoque;
+    }
     else alert("A versão do seu navegador é muito antiga. Por isso, não será possível executar essa aplicação");
 }
 
 function listarCliente() {
     if (typeof(Storage) !== "undefined") {
         let clientes = localStorage.getItem("clientes");
-        document.write("<h1>Cliente:</h1>")
+        document.write("<h1>Clientes:</h1>")
         if (clientes == null)
             document.write("<h3>Ainda não há nenhum cliente cadastrado</h3>");
         else {
             clientes = JSON.parse(clientes);
             clientes.forEach(cliente => {
-                document.write("<ul>");
-                document.write("<li>Nome: "+ clinte.nome +"</li>");
-                document.write("<li>CPF: "+ cliente.cpf +"</li>");
-                document.write("<li>Data de nascimento: "+ cliente.data_nascimento +"</li>");
-                document.write("<li>Endereço: "+ cliente.endereco +"</li>");
-                document.write("<li>E-mail: "+ cliente.email +"</li>");
-                document.write("<li>Telefone: "+ cliente.telefone +"</li>");
-                document.write("</ul>");
+                document.write('<div>');
+                document.write("<h2>Nome: "+cliente.nome+"</h2>");
+                document.write("<p>CPF: "+cliente.cpf+"</p>");
+                document.write("<p>Data de nascimento: "+cliente.data_nascimento+"</p>");
+                document.write("<p>Endereço: "+cliente.endereco+"</p>");
+                document.write("<p>E-mail: "+cliente.email+"</p>");
+                document.write("<p>Telefone: "+cliente.telefone+"</p>");
+                document.write("</div>");
             });
         }
     } 
